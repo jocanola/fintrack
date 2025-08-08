@@ -1,0 +1,9 @@
+{
+  "editor.defaultFormatter": "biomejs.biome",
+  "source.fixAll.biome": "explicit",
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "biome.lsp.bin": "C:\\Users\\Hp\\Documents\\project\\proof-of-concepts\\vectures17-technical-task\\the17thstudio\\node_modules\\@biomejs\\biome\\biome.js"
+}
