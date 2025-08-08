@@ -2,29 +2,35 @@
 
 import React from "react";
 import { Transaction } from "../types/dashboard";
-import { useTableSort } from "../hooks/useTableSort";
+import { useTransactionSearch } from "../hooks/useTransactionSearch";
 import TransactionTypeIndicator from "./TransactionTypeIndicator";
 import AmountDisplay from "./AmountDisplay";
 import SortIcon from "./SortIcon";
+import { EmptyState } from "./EmptyState";
 
 interface TransactionTableProps {
   transactions: Transaction[];
+  searchQuery?: string;
 }
 
 type SortField = "date" | "remark" | "amount" | "currency" | "type";
 
 const TransactionTable: React.FC<TransactionTableProps> = ({
   transactions,
+  searchQuery = "",
 }) => {
   const {
-    sortedData: sortedTransactions,
+    transactions: processedTransactions,
     sortField,
     sortDirection,
     handleSort,
-  } = useTableSort({
+    totalResults,
+    isFiltered,
+  } = useTransactionSearch({
     data: transactions,
-    defaultSortField: "date" as keyof Transaction,
+    defaultSortField: "date",
     defaultSortDirection: "desc",
+    externalQuery: searchQuery,
   });
 
   const renderSortIcon = (field: SortField) => (
@@ -35,6 +41,9 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
     />
   );
 
+
+
+
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-sm">
       {/* Mobile card view */}
@@ -43,7 +52,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
           <h3 className="font-semibold text-gray-900">Recent Transactions</h3>
         </div>
         <div className="divide-y divide-gray-200">
-          {sortedTransactions.map((transaction) => (
+          {processedTransactions.map((transaction) => (
             <div
               key={transaction.id}
               className="p-4 hover:bg-gray-50 transition-colors cursor-pointer"
@@ -66,6 +75,10 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
               </div>
             </div>
           ))}
+
+          {processedTransactions.length === 0 && (
+            <EmptyState isFiltered={isFiltered} />
+          )}
         </div>
       </div>
 
@@ -79,7 +92,11 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
                 onClick={() => handleSort("date")}
               >
                 <div className="flex items-center border-b border-gray-200 pb-2">
-                  Date {renderSortIcon("date")}
+                  Date {<SortIcon
+      isActive={sortField === "date"}
+      direction={sortDirection}
+      size="md"
+    />}
                 </div>
               </th>
               <th
@@ -117,7 +134,7 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
             </tr>
           </thead>
           <tbody className="bg-white">
-            {sortedTransactions.map((transaction, index) => (
+            {processedTransactions.map((transaction, index) => (
               <tr
                 key={transaction.id}
                 className={`hover:bg-gray-50 transition-colors cursor-pointer ${
@@ -156,6 +173,10 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
                 </td>
               </tr>
             ))}
+
+            {processedTransactions.length === 0 && (
+            <EmptyState isFiltered={isFiltered} />
+          )}
           </tbody>
         </table>
       </div>

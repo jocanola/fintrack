@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import SummaryCards from "./components/SummaryCards";
@@ -17,8 +16,8 @@ import { TabNavigation } from "src/features/wallet/components/TabNavigation";
 
 const WalletDashboard: React.FC = () => {
   const [activeMenuItem, setActiveMenuItem] = useState("dashboard");
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleMenuClick = () => {
     setSidebarOpen(true);
@@ -30,7 +29,11 @@ const WalletDashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background font-public-sans">
-      <Header onMenuClick={handleMenuClick} />
+      <Header 
+        onMenuClick={handleMenuClick} 
+        searchQuery={searchQuery}
+        onSearchChange={setSearchQuery}
+      />
 
       <div className="flex md:space-x-6 md:pl-0">
         <Sidebar
@@ -58,7 +61,10 @@ const WalletDashboard: React.FC = () => {
               <SummaryCards summary={dashboardSummary} />
 
               {/* Transaction Table */}
-              <TransactionTable transactions={sampleTransactions} />
+              <TransactionTable 
+                transactions={sampleTransactions} 
+                searchQuery={searchQuery}
+              />
             </div>
           </div>
         </main>
