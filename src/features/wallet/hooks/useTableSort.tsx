@@ -28,22 +28,25 @@ export function useTableSort<T>({
 
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => {
-      let aValue: any = a[sortField];
-      let bValue: any = b[sortField];
+      const aValue = a[sortField];
+      const bValue = b[sortField];
 
-      // Special handling for different data types
-      if (sortField === "amount") {
-        aValue = Math.abs(aValue as number);
-        bValue = Math.abs(bValue as number);
-      }
+      // Handle different data types
+      const getValue = (value: unknown, field: keyof T) => {
+        if (field === "amount") {
+          return Math.abs(Number(value));
+        }
+        if (field === "date") {
+          return new Date(String(value)).getTime();
+        }
+        return String(value).toLowerCase();
+      };
 
-      if (sortField === "date") {
-        aValue = new Date(aValue as string);
-        bValue = new Date(bValue as string);
-      }
+      const aProcessed = getValue(aValue, sortField);
+      const bProcessed = getValue(bValue, sortField);
 
-      if (aValue < bValue) return sortDirection === "asc" ? -1 : 1;
-      if (aValue > bValue) return sortDirection === "asc" ? 1 : -1;
+      if (aProcessed < bProcessed) return sortDirection === "asc" ? -1 : 1;
+      if (aProcessed > bProcessed) return sortDirection === "asc" ? 1 : -1;
       return 0;
     });
   }, [data, sortField, sortDirection]);

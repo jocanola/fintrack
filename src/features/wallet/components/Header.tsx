@@ -5,23 +5,24 @@ import { useState } from "react";
 
 interface HeaderProps {
   onMenuClick: () => void;
+  searchQuery?: string;
+  onSearchChange?: (query: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const Header: React.FC<HeaderProps> = ({ 
+  onMenuClick, 
+  searchQuery = "", 
+  onSearchChange 
+}) => {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      // Implement your search logic here
-      console.log("Searching for:", searchQuery);
-      // You can add navigation or API calls here
-    }
+    // Search is handled in real-time through onSearchChange
   };
 
   const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    onSearchChange?.(e.target.value);
   };
 
   const toggleMobileSearch = () => {
