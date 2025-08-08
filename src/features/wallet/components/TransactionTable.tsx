@@ -6,6 +6,7 @@ import { useTransactionSearch } from "../hooks/useTransactionSearch";
 import TransactionTypeIndicator from "./TransactionTypeIndicator";
 import AmountDisplay from "./AmountDisplay";
 import SortIcon from "./SortIcon";
+import { EmptyState } from "./EmptyState";
 
 interface TransactionTableProps {
   transactions: Transaction[];
@@ -40,6 +41,9 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
     />
   );
 
+
+
+
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-sm">
       {/* Mobile card view */}
@@ -71,6 +75,10 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
               </div>
             </div>
           ))}
+
+          {processedTransactions.length === 0 && (
+            <EmptyState isFiltered={isFiltered} />
+          )}
         </div>
       </div>
 
@@ -84,7 +92,11 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
                 onClick={() => handleSort("date")}
               >
                 <div className="flex items-center border-b border-gray-200 pb-2">
-                  Date {renderSortIcon("date")}
+                  Date {<SortIcon
+      isActive={sortField === "date"}
+      direction={sortDirection}
+      size="md"
+    />}
                 </div>
               </th>
               <th
@@ -161,6 +173,10 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
                 </td>
               </tr>
             ))}
+
+            {processedTransactions.length === 0 && (
+            <EmptyState isFiltered={isFiltered} />
+          )}
           </tbody>
         </table>
       </div>
