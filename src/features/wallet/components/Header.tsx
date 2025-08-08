@@ -9,10 +9,10 @@ interface HeaderProps {
   onSearchChange?: (query: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ 
-  onMenuClick, 
-  searchQuery = "", 
-  onSearchChange 
+const Header: React.FC<HeaderProps> = ({
+  onMenuClick,
+  searchQuery = "",
+  onSearchChange,
 }) => {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
 
@@ -96,7 +96,10 @@ const Header: React.FC<HeaderProps> = ({
             />
           </button>
 
-          <button type="button" className="p-2 hover:bg-gray-100 rounded-lg cursor-pointer">
+          <button
+            type="button"
+            className="p-2 hover:bg-gray-100 rounded-lg cursor-pointer"
+          >
             <Image
               src="/assets/icons/app-grid.svg"
               alt="App Grid"

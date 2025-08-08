@@ -41,9 +41,6 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
     />
   );
 
-
-
-
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-sm">
       {/* Mobile card view */}
@@ -92,11 +89,14 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
                 onClick={() => handleSort("date")}
               >
                 <div className="flex items-center border-b border-gray-200 pb-2">
-                  Date {<SortIcon
-      isActive={sortField === "date"}
-      direction={sortDirection}
-      size="md"
-    />}
+                  Date{" "}
+                  {
+                    <SortIcon
+                      isActive={sortField === "date"}
+                      direction={sortDirection}
+                      size="md"
+                    />
+                  }
                 </div>
               </th>
               <th
@@ -142,43 +142,39 @@ const TransactionTable: React.FC<TransactionTableProps> = ({
                 }`}
               >
                 <td className="w-1/2 px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium ">
-                <div className="border-b border-gray-200 pb-2">
-                  {transaction.date}
-                </div>
-                  
+                  <div className="border-b border-gray-200 pb-2">
+                    {transaction.date}
+                  </div>
                 </td>
                 <td className="w-1/8 px-6 py-4 whitespace-nowrap text-sm text-gray-700 ">
-                 <div className="border-b border-gray-200 pb-2">
-                  {transaction.remark}
-                 </div>
-                  
+                  <div className="border-b border-gray-200 pb-2">
+                    {transaction.remark}
+                  </div>
                 </td>
                 <td className="w-1/8 px-6 py-4 whitespace-nowrap">
-                 <div className="border-b border-gray-200 pb-2">
-                  <AmountDisplay amount={transaction.amount} /> 
-                 </div>
-                 
+                  <div className="border-b border-gray-200 pb-2">
+                    <AmountDisplay amount={transaction.amount} />
+                  </div>
                 </td>
                 <td className="w-1/8 px-6 py-4 whitespace-nowrap text-sm  ">
-                <div className="border-b border-gray-200 pb-2">
-                   {transaction.currency}
-                </div>
-                 
+                  <div className="border-b border-gray-200 pb-2">
+                    {transaction.currency}
+                  </div>
                 </td>
                 <td className="w-1/8 px-6 py-4 whitespace-nowrap text-sm ">
-                <div className="border-b border-gray-200 pb-2">
-                   <TransactionTypeIndicator type={transaction.type} />
-                </div>
-                 
+                  <div className="border-b border-gray-200 pb-2">
+                    <TransactionTypeIndicator type={transaction.type} />
+                  </div>
                 </td>
               </tr>
             ))}
 
-            {processedTransactions.length === 0 && (
-            <EmptyState isFiltered={isFiltered} />
-          )}
+           
           </tbody>
         </table>
+         {processedTransactions.length === 0 && (
+              <EmptyState isFiltered={isFiltered} />
+            )}
       </div>
     </div>
   );

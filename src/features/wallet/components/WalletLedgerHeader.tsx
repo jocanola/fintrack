@@ -20,7 +20,7 @@ export const WalletLedgerHeader = () => {
               className="ml-2 text-primary-900 md:w-6 md:h-6"
             />
           </div>
-          
+
           {/* Mobile Action Buttons */}
           <div className="flex items-center space-x-2 md:hidden">
             <button
@@ -43,7 +43,7 @@ export const WalletLedgerHeader = () => {
             </button>
           </div>
         </div>
-        
+
         {/* Status Badge */}
         <div className="flex items-center space-x-2 bg-subtle/10 border-1.5 border-black/0 rounded-2xl px-3 py-2 w-fit">
           <div className="w-2 h-2 bg-success rounded-full"></div>
@@ -62,9 +62,9 @@ export const WalletLedgerHeader = () => {
           Share
         </button>
         <button
-            type="button"
-            className="p-2 text-gray-400 rounded-[16px] border-muted/20 border-[1.5px] hover:text-gray-600 cursor-pointer"
-          >
+          type="button"
+          className="p-2 text-gray-400 rounded-[16px] border-muted/20 border-[1.5px] hover:text-gray-600 cursor-pointer"
+        >
           <Image
             src="/assets/icons/dots-vertical.svg"
             alt="More options"

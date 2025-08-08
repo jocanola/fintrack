@@ -12,7 +12,9 @@ const TransactionTypeIndicator: React.FC<TransactionTypeIndicatorProps> = ({
   const isCredit = type === "Credit";
 
   return (
-    <div className={`flex items-center  space-x-2 bg-subtle/10 border-1.5 rounded-2xl px-3 py-2 ${className}`}>
+    <div
+      className={`flex items-center  space-x-2 bg-subtle/10 border-1.5 rounded-2xl px-3 py-2 ${className}`}
+    >
       <div
         className={`w-2 h-2 rounded-full mr-2 ${
           isCredit ? "bg-success" : "bg-accent-600"

@@ -47,7 +47,10 @@ const SummaryCards: React.FC<SummaryCardsProps> = ({ summary }) => {
             <h3 className="text-[17px] font-bold leading-6 tracking-[-0.085px] text-primary-900">
               {card.title}
             </h3>
-            <button type="button" className="text-gray-400 hover:text-gray-600 cursor-pointer">
+            <button
+              type="button"
+              className="text-gray-400 hover:text-gray-600 cursor-pointer"
+            >
               <Image
                 src="/assets/icons/dots-horizontal.svg"
                 alt="More options"
