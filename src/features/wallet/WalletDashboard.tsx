@@ -29,8 +29,8 @@ const WalletDashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background font-public-sans">
-      <Header 
-        onMenuClick={handleMenuClick} 
+      <Header
+        onMenuClick={handleMenuClick}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
       />
@@ -61,8 +61,8 @@ const WalletDashboard: React.FC = () => {
               <SummaryCards summary={dashboardSummary} />
 
               {/* Transaction Table */}
-              <TransactionTable 
-                transactions={sampleTransactions} 
+              <TransactionTable
+                transactions={sampleTransactions}
                 searchQuery={searchQuery}
               />
             </div>

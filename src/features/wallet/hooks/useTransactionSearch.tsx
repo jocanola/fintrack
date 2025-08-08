@@ -19,7 +19,8 @@ export function useTransactionSearch({
 }: UseTransactionSearchProps) {
   const [internalQuery, setInternalQuery] = useState("");
   const [sortField, setSortField] = useState<SortField>(defaultSortField);
-  const [sortDirection, setSortDirection] = useState<SortDirection>(defaultSortDirection);
+  const [sortDirection, setSortDirection] =
+    useState<SortDirection>(defaultSortDirection);
 
   // Use external query if provided, otherwise use internal query
   const query = externalQuery !== undefined ? externalQuery : internalQuery;
@@ -73,18 +74,18 @@ export function useTransactionSearch({
   return {
     // Data
     transactions: processedData,
-    
+
     // Search state
     query,
     setQuery: externalQuery !== undefined ? undefined : setQuery,
     clearSearch: externalQuery !== undefined ? undefined : clearSearch,
     hasActiveSearch: Boolean(query.trim()),
-    
+
     // Sort state
     sortField,
     sortDirection,
     handleSort,
-    
+
     // Stats
     totalResults: processedData.length,
     isFiltered: Boolean(query.trim()),
