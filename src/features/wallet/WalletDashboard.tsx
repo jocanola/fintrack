@@ -11,7 +11,7 @@ import {
   sampleTransactions,
   dashboardSummary,
   users,
-} from "./data/sampleData";
+} from "./utils/sampleData";
 import { WalletLedgerHeader } from "src/features/wallet/components/WalletLedgerHeader";
 import { TabNavigation } from "src/features/wallet/components/TabNavigation";
 
